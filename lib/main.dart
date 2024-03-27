@@ -87,9 +87,6 @@ class _PrincipalViewState extends State<PrincipalView> {
                   }
                 },
               ),
-              //SizedBox(height: 30),
-
-              //
               // CAMPO DE TEXTO
               //
               SizedBox(height: 30),
@@ -136,18 +133,19 @@ class _PrincipalViewState extends State<PrincipalView> {
                 child: Text('Entrar'),
               ),
               SizedBox(height: 20),
+
               TextButton(
                 onPressed: () {},
                 child: Text(
                   'Esqueci minha senha',
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.black, fontSize: 16),
                 ),
               ),
               TextButton(
                 onPressed: () {},
                 child: Text(
                   'Cadastre-se',
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.black, fontSize: 16),
                 ),
               ),
 
