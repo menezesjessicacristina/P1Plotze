@@ -50,116 +50,121 @@ class _PrincipalViewState extends State<PrincipalView> {
       child: Scaffold(
         backgroundColor: Color.fromARGB(255, 253, 238, 99),
         body: Padding(
-          padding: EdgeInsets.fromLTRB(50, 100, 50, 100),
+          padding: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
           child: Form(
             key: formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+            child: Column(children: [
+              //Adicionar a imagem
+              Image.asset(
+                'lib/imagem/carrinho3.gif',
+                width: 200,
+                height: 200,
+              ),
+              TextFormField(
+                controller: txtValor1,
+
+                style: TextStyle(fontSize: 32),
+                decoration: InputDecoration(
+                  labelText: 'E-mail',
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.email_outlined),
+                ),
                 //
-                //Adicionar a imagem
+                // VALIDAÇÃO
                 //
-
-                Stack(
-                    clipBehavior: Clip.none,
-                    alignment: AlignmentDirectional.bottomEnd,
-                    children: [
-                      Positioned(
-                        bottom: 38,
-                        child: Image.asset(
-                          'lib/imagem/dog.png',
-                          width: 200,
-                          height: 200,
-                        ),
-                      ),
-                      TextFormField(
-                        controller: txtValor1,
-
-                        style: TextStyle(fontSize: 32),
-                        decoration: InputDecoration(
-                          labelText: 'Valor 1',
-                          border: OutlineInputBorder(),
-                          prefixIcon: Icon(Icons.pets_outlined),
-                        ),
-                        //
-                        // VALIDAÇÃO
-                        //
-                        validator: (value) {
-                          if (value == null) {
-                            return 'Informe um valor';
-                          } else if (value.isEmpty) {
-                            return 'Informe um valor';
-                          } else if (double.tryParse(value) == null) {
-                            return 'Informe um valor Numerico';
-                            //Retornar null significa sucesso na validação
-                          }
-                          return null;
-                        },
-                      ),
-                    ]),
-                //SizedBox(height: 30),
-
-                //
-                // CAMPO DE TEXTO
-                //
-
-                SizedBox(height: 30),
-                TextFormField(
-                  controller: txtValor2,
-
-                  style: TextStyle(fontSize: 32),
-                  decoration: InputDecoration(
-                    labelText: 'Valor 2',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.pets_outlined),
-                  ),
-                  //
-                  // VALIDAÇÃO
-                  //
-                  validator: (value) {
-                    if (value == null) {
-                      return 'Informe um valor';
-                    } else if (value.isEmpty) {
-                      return 'Informe um valor';
-                    } else if (double.tryParse(value) == null) {
-                      return 'Informe um valor Numerico';
-                      //Retornar null significa sucesso na validação
-                    }
+                validator: (value) {
+                  if (value == null) {
+                    return 'Campo Obrigatório';
+                  } else if (value.isEmpty) {
+                    return 'Campo Obrigatório';
+                  }
+                  if (value.contains('@')) {
                     return null;
-                  },
-                ),
-                SizedBox(height: 30),
-                //
-                // BOTÃO
-                //
-                //ElevatedButton, OutlinedButton, TextButton
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 187, 240, 251),
-                    foregroundColor: Colors.blue.shade900,
-                    minimumSize: Size(200, 50),
-                    shadowColor: Color.fromARGB(255, 3, 17, 43),
-                  ),
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      //
-                      //Retornar as informaçoesninseridas
-                      //nos campos de texto
-                      setState(() {
-                        double v1 = double.parse(txtValor1.text);
-                        double v2 = double.parse(txtValor2.text);
-                        double s = (v1 + v2);
+                  } else {
+                    return 'Informe um email valido';
+                  }
+                },
+              ),
+              //SizedBox(height: 30),
 
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text("Soma: ${s.toStringAsFixed(2)}"),
-                            duration: Duration(seconds: 3)));
-                      });
-                    }
-                  },
-                  child: Text('OK'),
+              //
+              // CAMPO DE TEXTO
+              //
+              SizedBox(height: 30),
+              TextFormField(
+                obscureText: true,
+                controller: txtValor2,
+
+                style: TextStyle(fontSize: 32),
+                decoration: InputDecoration(
+                  labelText: 'Senha',
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.password_sharp),
                 ),
-              ],
-            ),
+                //
+                // VALIDAÇÃO
+                //
+                validator: (value) {
+                  if (value == null) {
+                    return 'Informe um valor';
+                  } else if (value.isEmpty) {
+                    return 'Informe um valor';
+                  } else if (double.tryParse(value) == null) {
+                    return 'Informe um valor Numerico';
+                    //Retornar null significa sucesso na validação
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 30),
+              //
+              // BOTÃO
+              //
+              //ElevatedButton, OutlinedButton, TextButton
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 141, 181, 226),
+                  foregroundColor: Colors.blue.shade900,
+                  minimumSize: Size(200, 50),
+                  shadowColor: Color.fromARGB(255, 3, 17, 43),
+                ),
+                onPressed: () {},
+                child: Text('Entrar'),
+              ),
+              SizedBox(height: 20),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Esqueci minha senha',
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Cadastre-se',
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+
+              SizedBox(height: 120),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Sobre Nós',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                ],
+              )
+            ]),
           ),
         ),
       ),
