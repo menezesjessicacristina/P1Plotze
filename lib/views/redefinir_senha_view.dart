@@ -100,13 +100,13 @@ class _RedefinirSenhaViewState extends State<RedefinirSenhaView> {
               ),
               const SizedBox(height: 30),
 
-              Text(
+              const Text(
                 '--------- OU ---------',
                 style: TextStyle(fontSize: 14),
               ),
               const SizedBox(height: 30),
 
-              Text('Criar outra conta',
+              const Text('Criar outra conta',
                   style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
               const SizedBox(height: 80),
               InkWell(
