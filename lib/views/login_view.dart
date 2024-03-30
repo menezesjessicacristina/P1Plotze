@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meu_login/funcoes.dart';
 import 'package:meu_login/views/cadastro_view.dart';
+import 'package:meu_login/views/principal_view.dart';
 import 'package:meu_login/views/redefinir_senha_view.dart';
 import 'package:meu_login/views/sobre_view.dart';
 
@@ -58,7 +59,13 @@ class _LoginViewState extends State<LoginView> {
                     shadowColor: const Color.fromARGB(255, 3, 17, 43),
                   ),
                   onPressed: () {
-                    if (formKey.currentState!.validate()) {}
+                    if (formKey.currentState!.validate()) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const PrincipalView()),
+                      );
+                    }
                   },
                   child: const Text('Entrar'),
                 ),

@@ -3,6 +3,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:meu_login/views/login_view.dart';
+import 'package:meu_login/views/principal_view.dart';
 
 void main() {
   runApp(
@@ -21,21 +22,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Meu App',
-      home: LoginView(),
+      home: PrincipalView(),
     );
-  }
-}
-
-class PrincipalView extends StatefulWidget {
-  const PrincipalView({super.key});
-
-  @override
-  State<PrincipalView> createState() => _PrincipalViewState();
-}
-
-class _PrincipalViewState extends State<PrincipalView> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
   }
 }
