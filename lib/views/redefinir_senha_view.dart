@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meu_login/funcoes.dart';
 import 'package:meu_login/views/cadastro_view.dart';
 import 'package:meu_login/views/login_view.dart';
 
@@ -54,33 +55,7 @@ class _RedefinirSenhaViewState extends State<RedefinirSenhaView> {
               ),
               const SizedBox(height: 30),
 
-              TextFormField(
-                controller: txtemail,
-
-                style: const TextStyle(fontSize: 18),
-                decoration: const InputDecoration(
-                  labelText: 'E-mail',
-                  fillColor: Colors.white,
-                  filled: true,
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.email_outlined),
-                ),
-                //
-                // VALIDAÇÃO
-                //
-                validator: (value) {
-                  if (value == null) {
-                    return 'Campo Obrigatório';
-                  } else if (value.isEmpty) {
-                    return 'Campo Obrigatório';
-                  }
-                  if (value.contains('@')) {
-                    return null;
-                  } else {
-                    return 'Informe um email valido';
-                  }
-                },
-              ),
+              Funcoes().campodeformulario(txtemail, 'Email', 0),
 
               const SizedBox(height: 30),
               //
@@ -114,7 +89,8 @@ class _RedefinirSenhaViewState extends State<RedefinirSenhaView> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const CadastroView()),
+                    MaterialPageRoute(
+                        builder: (context) => const CadastroView()),
                   );
                 },
               ),

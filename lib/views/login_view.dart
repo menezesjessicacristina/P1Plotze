@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meu_login/funcoes.dart';
 import 'package:meu_login/views/cadastro_view.dart';
 import 'package:meu_login/views/redefinir_senha_view.dart';
 import 'package:meu_login/views/sobre_view.dart';
@@ -39,63 +40,11 @@ class _LoginViewState extends State<LoginView> {
                   width: 200,
                   height: 200,
                 ),
-                TextFormField(
-                  controller: txtValor1,
-
-                  style: const TextStyle(fontSize: 18),
-                  decoration: const InputDecoration(
-                    labelText: 'E-mail',
-                    fillColor: Colors.white,
-                    filled: true,
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.email_outlined),
-                  ),
-                  //
-                  // VALIDAÇÃO
-                  //
-                  validator: (value) {
-                    if (value == null) {
-                      return 'Campo Obrigatório';
-                    } else if (value.isEmpty) {
-                      return 'Campo Obrigatório';
-                    }
-                    if (value.contains('@')) {
-                      return null;
-                    } else {
-                      return 'Informe um email valido';
-                    }
-                  },
-                ),
+                Funcoes().campodeformulario(txtValor1, 'Email', 0),
                 // CAMPO DE TEXTO
                 //
                 const SizedBox(height: 30),
-                TextFormField(
-                  obscureText: true,
-                  controller: txtValor2,
-
-                  style: const TextStyle(fontSize: 18),
-                  decoration: const InputDecoration(
-                    labelText: 'Senha',
-                    fillColor: Colors.white,
-                    filled: true,
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.password_sharp),
-                  ),
-                  //
-                  // VALIDAÇÃO
-                  //
-                  validator: (value) {
-                    if (value == null) {
-                      return 'Informe um valor';
-                    } else if (value.isEmpty) {
-                      return 'Informe um valor';
-                    } else if (double.tryParse(value) == null) {
-                      return 'Informe um valor Numerico';
-                      //Retornar null significa sucesso na validação
-                    }
-                    return null;
-                  },
-                ),
+                Funcoes().campodeformulario(txtValor2, 'Senha', 1),
                 const SizedBox(height: 30),
                 //
                 // BOTÃO
@@ -132,7 +81,8 @@ class _LoginViewState extends State<LoginView> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const CadastroView()),
+                      MaterialPageRoute(
+                          builder: (context) => const CadastroView()),
                     );
                   },
                   child: const Text(
@@ -149,7 +99,8 @@ class _LoginViewState extends State<LoginView> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const SobreView()),
+                          MaterialPageRoute(
+                              builder: (context) => const SobreView()),
                         );
                       },
                       child: const Text(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meu_login/funcoes.dart';
 import 'package:meu_login/views/login_view.dart';
 
 class CadastroView extends StatefulWidget {
@@ -40,84 +41,14 @@ class _CadastroViewState extends State<CadastroView> {
               ),
               const SizedBox(height: 30),
 
-              TextFormField(
-                controller: txtnome,
-                style: const TextStyle(fontSize: 18),
-                decoration: const InputDecoration(
-                  labelText: 'Nome',
-                  fillColor: Colors.white,
-                  filled: true,
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.people_alt_outlined),
-                ),
-                validator: (value) {
-                  if (value == null) {
-                    return 'Campo Obrigatório';
-                  } else if (value.isEmpty) {
-                    return 'Campo Obrigatório';
-                  }
-                  return null;
-                },
-              ),
+              Funcoes().campodeformulario(txtnome, 'Nome', 2),
               const SizedBox(height: 30),
 
-              TextFormField(
-                controller: txtemail,
-
-                style: const TextStyle(fontSize: 18),
-                decoration: const InputDecoration(
-                  labelText: 'E-mail',
-                  fillColor: Colors.white,
-                  filled: true,
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.email_outlined),
-                ),
-                //
-                // VALIDAÇÃO
-                //
-                validator: (value) {
-                  if (value == null) {
-                    return 'Campo Obrigatório';
-                  } else if (value.isEmpty) {
-                    return 'Campo Obrigatório';
-                  }
-                  if (value.contains('@')) {
-                    return null;
-                  } else {
-                    return 'Informe um email valido';
-                  }
-                },
-              ),
+              Funcoes().campodeformulario(txtemail, 'Email', 0),
               // CAMPO DE TEXTO
               //
               const SizedBox(height: 30),
-              TextFormField(
-                obscureText: true,
-                controller: txtsenha,
-
-                style: const TextStyle(fontSize: 18),
-                decoration: const InputDecoration(
-                  labelText: 'Senha',
-                  fillColor: Colors.white,
-                  filled: true,
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.password_sharp),
-                ),
-                //
-                // VALIDAÇÃO
-                //
-                validator: (value) {
-                  if (value == null) {
-                    return 'Informe um valor';
-                  } else if (value.isEmpty) {
-                    return 'Informe um valor';
-                  } else if (double.tryParse(value) == null) {
-                    return 'Apenas Numeros';
-                    //Retornar null significa sucesso na validação
-                  }
-                  return null;
-                },
-              ),
+              Funcoes().campodeformulario(txtsenha, 'Senha', 1),
               const SizedBox(height: 30),
               //
               // BOTÃO
