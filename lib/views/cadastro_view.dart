@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meu_login/main.dart';
+import 'package:meu_login/views/login_view.dart';
 
 class CadastroView extends StatefulWidget {
   const CadastroView({super.key});
@@ -141,8 +142,7 @@ class _CadastroViewState extends State<CadastroView> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const PrincipalView()),
+                    MaterialPageRoute(builder: (context) => const LoginView()),
                   );
                 },
                 child: const Row(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meu_login/main.dart';
+import 'package:meu_login/views/cadastro_view.dart';
+import 'package:meu_login/views/login_view.dart';
 
 class RedefinirSenhaView extends StatefulWidget {
   const RedefinirSenhaView({super.key});
@@ -106,15 +108,24 @@ class _RedefinirSenhaViewState extends State<RedefinirSenhaView> {
               ),
               const SizedBox(height: 30),
 
-              const Text('Criar outra conta',
-                  style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+              TextButton(
+                child: Text('Criar outra conta',
+                    style: TextStyle(fontSize: 18),
+                    textAlign: TextAlign.center),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CadastroView()),
+                  );
+                },
+              ),
+
               const SizedBox(height: 80),
               InkWell(
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const PrincipalView()),
+                    MaterialPageRoute(builder: (context) => const LoginView()),
                   );
                 },
                 child: const Row(
