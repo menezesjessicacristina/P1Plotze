@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meu_login/main.dart';
 import 'package:meu_login/views/login_view.dart';
 
 class CadastroView extends StatefulWidget {

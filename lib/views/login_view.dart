@@ -26,10 +26,10 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 253, 238, 99),
+        backgroundColor: const Color.fromARGB(255, 253, 238, 99),
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
+            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
             child: Form(
               key: formKey,
               child: Column(children: [
@@ -42,8 +42,8 @@ class _LoginViewState extends State<LoginView> {
                 TextFormField(
                   controller: txtValor1,
 
-                  style: TextStyle(fontSize: 18),
-                  decoration: InputDecoration(
+                  style: const TextStyle(fontSize: 18),
+                  decoration: const InputDecoration(
                     labelText: 'E-mail',
                     fillColor: Colors.white,
                     filled: true,
@@ -68,13 +68,13 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 // CAMPO DE TEXTO
                 //
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 TextFormField(
                   obscureText: true,
                   controller: txtValor2,
 
-                  style: TextStyle(fontSize: 18),
-                  decoration: InputDecoration(
+                  style: const TextStyle(fontSize: 18),
+                  decoration: const InputDecoration(
                     labelText: 'Senha',
                     fillColor: Colors.white,
                     filled: true,
@@ -96,34 +96,34 @@ class _LoginViewState extends State<LoginView> {
                     return null;
                   },
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 //
                 // BOTÃO
                 //
                 //ElevatedButton, OutlinedButton, TextButton
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(255, 141, 181, 226),
+                    backgroundColor: const Color.fromARGB(255, 141, 181, 226),
                     foregroundColor: Colors.blue.shade900,
-                    minimumSize: Size(200, 50),
-                    shadowColor: Color.fromARGB(255, 3, 17, 43),
+                    minimumSize: const Size(200, 50),
+                    shadowColor: const Color.fromARGB(255, 3, 17, 43),
                   ),
                   onPressed: () {
                     if (formKey.currentState!.validate()) {}
                   },
-                  child: Text('Entrar'),
+                  child: const Text('Entrar'),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
 
                 TextButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => RedefinirSenhaView()),
+                          builder: (context) => const RedefinirSenhaView()),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     'Esqueci minha senha',
                     style: TextStyle(color: Colors.black, fontSize: 16),
                   ),
@@ -132,16 +132,16 @@ class _LoginViewState extends State<LoginView> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => CadastroView()),
+                      MaterialPageRoute(builder: (context) => const CadastroView()),
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     'Cadastre-se',
                     style: TextStyle(color: Colors.black, fontSize: 16),
                   ),
                 ),
 
-                SizedBox(height: 80),
+                const SizedBox(height: 80),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -149,10 +149,10 @@ class _LoginViewState extends State<LoginView> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => SobreView()),
+                          MaterialPageRoute(builder: (context) => const SobreView()),
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         'Sobre',
                         style: TextStyle(color: Colors.black),
                       ),

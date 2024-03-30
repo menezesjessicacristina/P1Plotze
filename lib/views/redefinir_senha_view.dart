@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meu_login/main.dart';
 import 'package:meu_login/views/cadastro_view.dart';
 import 'package:meu_login/views/login_view.dart';
 
@@ -109,13 +108,13 @@ class _RedefinirSenhaViewState extends State<RedefinirSenhaView> {
               const SizedBox(height: 30),
 
               TextButton(
-                child: Text('Criar outra conta',
+                child: const Text('Criar outra conta',
                     style: TextStyle(fontSize: 18),
                     textAlign: TextAlign.center),
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => CadastroView()),
+                    MaterialPageRoute(builder: (context) => const CadastroView()),
                   );
                 },
               ),

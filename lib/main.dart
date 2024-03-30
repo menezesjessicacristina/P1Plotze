@@ -2,10 +2,7 @@
 
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:meu_login/views/cadastro_view.dart';
 import 'package:meu_login/views/login_view.dart';
-import 'package:meu_login/views/redefinir_senha_view.dart';
-import 'package:meu_login/views/sobre_view.dart';
 
 void main() {
   runApp(
