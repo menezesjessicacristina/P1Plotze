@@ -2,7 +2,6 @@
 
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:meu_login/views/login_view.dart';
 import 'package:meu_login/views/principal_view.dart';
 
 void main() {

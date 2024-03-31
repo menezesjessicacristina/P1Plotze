@@ -4,7 +4,7 @@ class Funcoes {
   TextFormField campodeformulario(
     TextEditingController controle,
     String label,
-    int opcao,
+    int? opcao,
   ) {
     List<IconData> icone = [
       Icons.email_outlined,
@@ -19,26 +19,28 @@ class Funcoes {
           fillColor: Colors.white,
           filled: true,
           border: const OutlineInputBorder(),
-          prefixIcon: Icon(icone[opcao]),
+          prefixIcon: opcao == null || opcao == 4 ? null : Icon(icone[opcao]),
         ),
         // VALIDAÇÃO
         validator: (value) {
-          if (value == null) {
-            return 'Campo Obrigatório';
-          } else if (value.isEmpty) {
-            return 'Campo Obrigatório';
-          }
-          switch (opcao) {
-            case 0:
-              if (value.contains('@')) {
-                return null;
-              } else {
-                return 'Informe um email valido';
-              }
-            case 1:
-              if (double.tryParse(value) == null) {
-                return 'Informe um valor Numerico';
-              }
+          if (opcao != 4) {
+            if (value == null) {
+              return 'Campo Obrigatório';
+            } else if (value.isEmpty) {
+              return 'Campo Obrigatório';
+            }
+            switch (opcao) {
+              case 0:
+                if (value.contains('@')) {
+                  return null;
+                } else {
+                  return 'Informe um email valido';
+                }
+              case 1:
+                if (double.tryParse(value) == null) {
+                  return 'Informe um valor Numerico';
+                }
+            }
           }
           return null;
         });
