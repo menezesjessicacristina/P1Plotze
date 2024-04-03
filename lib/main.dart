@@ -2,7 +2,9 @@
 
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:meu_login/views/itens_view.dart';
 import 'package:meu_login/views/principal_view.dart';
+import 'package:meu_login/views/sobre_view.dart';
 
 void main() {
   runApp(
@@ -21,7 +23,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Meu App',
-      home: PrincipalView(),
+      home: ItensView(nomeLista: 'Material Escolar',),
     );
   }
 }
