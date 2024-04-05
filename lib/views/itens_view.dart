@@ -40,64 +40,34 @@ class _ItensViewState extends State<ItensView> {
           backgroundColor: const Color.fromARGB(255, 253, 238, 99),
         ),
 
-<<<<<<< HEAD
         body: lista.lista.isNotEmpty
-            ? ListView.builder(
-                itemCount: lista.lista.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Card(
-                    color: const Color.fromARGB(255, 255, 252, 219),
-                    shadowColor: Colors.amber,
-                    surfaceTintColor: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: ListTile(
-                        title: Text(lista.lista[index].nomeItem),
-                        leading: Text(
-                          lista.lista[index].qtd,
-                          style: const TextStyle(
-                              fontSize: 13, fontWeight: FontWeight.w600),
-                        ),
-                        onTap: () {
-                          item.text = lista.lista[index].nomeItem;
-                          qtd.text = lista.lista[index].qtd;
-                          obs.text = lista.lista[index].obs;
-
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return novoItem(true, lista.lista[index]);
-                              });
-=======
-        body: itens.isNotEmpty
-            ? Column(
-                children: [
-                  Expanded(
-                      child: Row(
-                    children: [
-                      Expanded(
-                          child: Text(
-                        'Qtd',
-                        textAlign: TextAlign.center,
-                      )),
-                      Expanded(
-                          flex: 2,
-                          child: Text(
-                            'Item',
-                            textAlign: TextAlign.center,
-                          )),
-                      Expanded(
-                          child: Text(
-                        'Obs',
-                        textAlign: TextAlign.center,
-                      ))
-                    ],
-                  )),
-                  Divider(),
-                  Expanded(
-                      flex: 20,
-                      child: ListView.builder(
-                        itemCount: itens.length,
+            ? Column(children: [
+                Expanded(
+                    child: Row(
+                  children: [
+                    Expanded(
+                        child: Text(
+                      'Qtd',
+                      textAlign: TextAlign.center,
+                    )),
+                    Expanded(
+                        flex: 2,
+                        child: Text(
+                          'Item',
+                          textAlign: TextAlign.center,
+                        )),
+                    Expanded(
+                        child: Text(
+                      'Obs',
+                      textAlign: TextAlign.center,
+                    ))
+                  ],
+                )),
+                Divider(),
+                Expanded(
+                    flex: 20,
+                    child: ListView.builder(
+                        itemCount: lista.lista.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Card(
                             color: const Color.fromARGB(255, 255, 252, 219),
@@ -105,37 +75,57 @@ class _ItensViewState extends State<ItensView> {
                             surfaceTintColor: Colors.white,
                             child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 5),
-                              child: ListTile(
-                                title: Text('${itens[index]['Nome:']}'),
-                                leading: Text(
-                                  '${itens[index]['Quantidade:']}',
-                                  style: const TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w600),
-                                ),
-                                trailing: Text('${itens[index]['Obs:']}',
-                                    style: TextStyle(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w600)),
-                                onTap: () {
-                                  item.text = itens[index]['Nome:'];
-                                  qtd.text = itens[index]['Quantidade:'];
-                                  obs.text = itens[index]['Obs:'];
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    flex: 5,
+                                    child: InkWell(
+                                        child: Row(
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                textAlign: TextAlign.center,
+                                                lista.lista[index].qtd,
+                                                style: const TextStyle(
+                                                    fontSize: 13,
+                                                    fontWeight:
+                                                        FontWeight.w600),
+                                              ),
+                                            ),
+                                            Expanded(
+                                              flex: 3,
+                                              child: Text(
+                                                lista.lista[index].nomeItem,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        onTap: () {
+                                          item.text =
+                                              lista.lista[index].nomeItem;
+                                          qtd.text = lista.lista[index].qtd;
+                                          obs.text = lista.lista[index].obs;
 
-                                  showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return novoItem(true, index);
-                                      });
-                                },
+                                          showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return novoItem(
+                                                    true, lista.lista[index]);
+                                              });
+                                        }),
+                                  ),
+                                  Expanded(
+                                    child: IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(Icons.edit)),
+                                  )
+                                ],
                               ),
                             ),
                           );
->>>>>>> 98d255853e42cf88fdc53537d63a68bf27e0c2fe
-                        },
-                      ))
-                ],
-              )
+                        })),
+              ])
             : Container(),
         //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: FloatingActionButton.extended(

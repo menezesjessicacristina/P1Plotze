@@ -23,7 +23,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Meu App',
-      home: ItensView(nomeLista: 'Material Escolar',),
+      home: PrincipalView(),
     );
   }
 }
