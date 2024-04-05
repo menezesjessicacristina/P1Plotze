@@ -33,9 +33,17 @@ class _SobreViewState extends State<SobreView> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
               child: Text(
-                  'Lista de Compras: Este aplicativo oferece uma experiência completa, Lembre-se de escolher um aplicativo que atenda às suas necessidades e preferências pessoais. Feliz compras! ',
+                  'Lista de Compras: Este é um aplicativo simples e intuitivo para criar e gerenciar listas de compras. Você pode criar listas personalizadas para diferentes finalidades, como compras semanais, material escolar, lista de presentes e muito mais. \n\nO objetivo deste aplicativo é ajudar no seu dia a dia a otimizar o tempo e não deixar-lo esquecer nenhum item da sau lista. ',
                   style: TextStyle(color: Colors.yellow[50]),
-                  textAlign: TextAlign.center),
+                  textAlign: TextAlign.justify),
+            ),
+            
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 80, top: 100),
+              child: Text('Por: Jéssica Cristina Menezes',
+                  style: TextStyle(color: Colors.yellow[50]),
+                  ),
             )
           ]),
         ),

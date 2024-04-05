@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:meu_login/funcoes.dart';
 import 'package:meu_login/model/iem_model.dart';
 import 'package:meu_login/model/lista_model.dart';
@@ -38,6 +40,7 @@ class _ItensViewState extends State<ItensView> {
           backgroundColor: const Color.fromARGB(255, 253, 238, 99),
         ),
 
+<<<<<<< HEAD
         body: lista.lista.isNotEmpty
             ? ListView.builder(
                 itemCount: lista.lista.length,
@@ -65,11 +68,73 @@ class _ItensViewState extends State<ItensView> {
                               builder: (BuildContext context) {
                                 return novoItem(true, lista.lista[index]);
                               });
+=======
+        body: itens.isNotEmpty
+            ? Column(
+                children: [
+                  Expanded(
+                      child: Row(
+                    children: [
+                      Expanded(
+                          child: Text(
+                        'Qtd',
+                        textAlign: TextAlign.center,
+                      )),
+                      Expanded(
+                          flex: 2,
+                          child: Text(
+                            'Item',
+                            textAlign: TextAlign.center,
+                          )),
+                      Expanded(
+                          child: Text(
+                        'Obs',
+                        textAlign: TextAlign.center,
+                      ))
+                    ],
+                  )),
+                  Divider(),
+                  Expanded(
+                      flex: 20,
+                      child: ListView.builder(
+                        itemCount: itens.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Card(
+                            color: const Color.fromARGB(255, 255, 252, 219),
+                            shadowColor: Colors.amber,
+                            surfaceTintColor: Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 5),
+                              child: ListTile(
+                                title: Text('${itens[index]['Nome:']}'),
+                                leading: Text(
+                                  '${itens[index]['Quantidade:']}',
+                                  style: const TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                trailing: Text('${itens[index]['Obs:']}',
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600)),
+                                onTap: () {
+                                  item.text = itens[index]['Nome:'];
+                                  qtd.text = itens[index]['Quantidade:'];
+                                  obs.text = itens[index]['Obs:'];
+
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return novoItem(true, index);
+                                      });
+                                },
+                              ),
+                            ),
+                          );
+>>>>>>> 98d255853e42cf88fdc53537d63a68bf27e0c2fe
                         },
-                      ),
-                    ),
-                  );
-                },
+                      ))
+                ],
               )
             : Container(),
         //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
