@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:meu_login/funcoes.dart';
+import 'package:meu_login/model/iem_model.dart';
+import 'package:meu_login/model/lista_model.dart';
+import 'package:meu_login/repositories/repositorio.dart';
 
 class ItensView extends StatefulWidget {
-  String nomeLista;
+  final ListaModel l;
+  final int i;
 
-  ItensView({super.key, required this.nomeLista});
+  const ItensView({super.key, required this.l, required this.i});
 
   @override
   State<ItensView> createState() => _ItensViewState();
@@ -16,20 +20,27 @@ class _ItensViewState extends State<ItensView> {
   TextEditingController obs = TextEditingController();
   var itemFormKey = GlobalKey<FormState>();
 
-  List<Map<String, dynamic>> itens = [];
+  final r = Repositorio();
+  late ListaModel lista;
+  @override
+  void initState() {
+    lista = widget.l;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text(widget.nomeLista),
+          title: Text(lista.nomeLista),
           backgroundColor: const Color.fromARGB(255, 253, 238, 99),
         ),
 
-        body: itens.isNotEmpty
+        body: lista.lista.isNotEmpty
             ? ListView.builder(
-                itemCount: itens.length,
+                itemCount: lista.lista.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
                     color: const Color.fromARGB(255, 255, 252, 219),
@@ -38,21 +49,21 @@ class _ItensViewState extends State<ItensView> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       child: ListTile(
-                        title: Text('${itens[index]['Nome:']}'),
+                        title: Text(lista.lista[index].nomeItem),
                         leading: Text(
-                          '${itens[index]['Quantidade:']}',
+                          lista.lista[index].qtd,
                           style: const TextStyle(
                               fontSize: 13, fontWeight: FontWeight.w600),
                         ),
                         onTap: () {
-                          item.text = itens[index]['Nome:'];
-                          qtd.text = itens[index]['Quantidade:'];
-                          obs.text = itens[index]['Obs:'];
+                          item.text = lista.lista[index].nomeItem;
+                          qtd.text = lista.lista[index].qtd;
+                          obs.text = lista.lista[index].obs;
 
                           showDialog(
                               context: context,
                               builder: (BuildContext context) {
-                                return novoItem(true, index);
+                                return novoItem(true, lista.lista[index]);
                               });
                         },
                       ),
@@ -67,7 +78,7 @@ class _ItensViewState extends State<ItensView> {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return novoItem(false, 0);
+                  return novoItem(false, null);
                 });
           },
           label: const Text(
@@ -84,7 +95,7 @@ class _ItensViewState extends State<ItensView> {
     );
   }
 
-  AlertDialog novoItem(bool edit, int index) {
+  AlertDialog novoItem(bool edit, ItemModel? it) {
     return AlertDialog(
       backgroundColor: Colors.white,
       elevation: 0,
@@ -117,19 +128,26 @@ class _ItensViewState extends State<ItensView> {
         TextButton(
           onPressed: () {
             if (itemFormKey.currentState!.validate()) {
-              setState(() {
-                edit
-                    ? itens[index] = {
-                        'Nome:': item.text,
-                        'Quantidade:': qtd.text,
-                        'Obs:': obs.text,
-                      }
-                    : itens.add({
-                        'Nome:': item.text,
-                        'Quantidade:': qtd.text,
-                        'Obs:': obs.text,
-                      });
-              });
+              int ct = 0;
+              ItemModel b = ItemModel(
+                  nomeItem: item.text,
+                  qtd: qtd.text,
+                  obs: obs.text,
+                  id: DateTime.now().toString());
+
+              if (edit) {
+                for (int i = 0; i < lista.lista.length; i++) {
+                  if (lista.lista[i].id == it!.id) {
+                    lista.lista[i] = it;
+                    ct = i;
+                  }
+                }
+                r.editaritem(it!, ct);
+              } else {
+                lista.lista.add(b);
+                r.additem(b, widget.i);
+              }
+              setState(() {});
               item.text = '';
               qtd.text = '';
               obs.text = '';

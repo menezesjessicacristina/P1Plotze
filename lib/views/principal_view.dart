@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meu_login/funcoes.dart';
+import 'package:meu_login/model/lista_model.dart';
+import 'package:meu_login/repositories/repositorio.dart';
 import 'package:meu_login/views/itens_view.dart';
 
 class PrincipalView extends StatefulWidget {
@@ -12,7 +14,15 @@ class PrincipalView extends StatefulWidget {
 class _PrincipalViewState extends State<PrincipalView> {
   TextEditingController listaCompras = TextEditingController();
   var nomeListaFormKey = GlobalKey<FormState>();
-  List<String> lista = ['Material Escolar'];
+
+  final r = Repositorio();
+  List<ListaModel> lista = [];
+  @override
+  void initState() {
+    lista = r.listas;
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +49,10 @@ class _PrincipalViewState extends State<PrincipalView> {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              ItensView(nomeLista: lista[index])),
+                              ItensView(l: lista[index], i: index)),
                     );
                   },
-                  title: Text(lista[index]),
+                  title: Text(lista[index].nomeLista),
                 ),
               ),
             );
@@ -95,9 +105,10 @@ class _PrincipalViewState extends State<PrincipalView> {
           onPressed: () {
             debugPrint(listaCompras.text);
             if (nomeListaFormKey.currentState!.validate()) {
-              setState(() {
-                lista.add(listaCompras.text);
-              });
+              ListaModel a =
+                  ListaModel(nomeLista: listaCompras.text, lista: []);
+              r.addlista(a);
+              setState(() {});
               listaCompras.text = '';
               Navigator.pop(context);
             }
