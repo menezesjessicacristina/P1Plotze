@@ -349,15 +349,17 @@ class _ItensViewState extends State<ItensView> {
         edit ? 'Editar Item' : 'Novo Item',
         textAlign: TextAlign.center,
       ),
-      content: Form(
-        key: itemFormKey,
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Funcoes().campodeformulario(item, 'Nome do Item', null),
-          const SizedBox(height: 15),
-          Funcoes().campodeformulario(qtd, 'Quantidade', 4),
-          const SizedBox(height: 15),
-          Funcoes().campodeformulario(obs, 'Observação', 4),
-        ]),
+      content: SingleChildScrollView(
+        child: Form(
+          key: itemFormKey,
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            Funcoes().campodeformulario(item, 'Nome do Item', null),
+            const SizedBox(height: 15),
+            Funcoes().campodeformulario(qtd, 'Quantidade', 4),
+            const SizedBox(height: 15),
+            Funcoes().campodeformulario(obs, 'Observação', 4),
+          ]),
+        ),
       ),
       actions: [
         TextButton(

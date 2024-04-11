@@ -51,6 +51,14 @@ class _PrincipalViewState extends State<PrincipalView> {
                               ItensView(l: lista[index], i: index)),
                     );
                   },
+                  onLongPress: () {
+                    listaCompras.text = lista[index].nomeLista;
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return novaLista(true);
+                        });
+                  },
                   title: Text(lista[index].nomeLista),
                 ),
               ),
@@ -63,7 +71,7 @@ class _PrincipalViewState extends State<PrincipalView> {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return novaLista();
+                  return novaLista(false);
                 });
           },
           label: const Text(
@@ -80,7 +88,7 @@ class _PrincipalViewState extends State<PrincipalView> {
     );
   }
 
-  AlertDialog novaLista() {
+  AlertDialog novaLista(bool editar) {
     return AlertDialog(
       elevation: 0,
       actionsAlignment: MainAxisAlignment.spaceBetween,
@@ -106,7 +114,12 @@ class _PrincipalViewState extends State<PrincipalView> {
             if (nomeListaFormKey.currentState!.validate()) {
               ListaModel a =
                   ListaModel(nomeLista: listaCompras.text, lista: []);
-              r.addlista(a);
+              if (editar) {
+                r.addlista(a);
+              } else {
+                r.addlista(a);
+              }
+
               setState(() {});
               listaCompras.text = '';
               Navigator.pop(context);

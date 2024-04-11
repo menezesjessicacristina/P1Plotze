@@ -4,12 +4,11 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:meu_login/views/login_view.dart';
 
-
 void main() {
   runApp(
     DevicePreview(
       enabled: true,
-      builder: (context) =>  MainApp(),
+      builder: (context) => MainApp(),
     ),
   );
 }
