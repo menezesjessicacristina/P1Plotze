@@ -195,7 +195,7 @@ class _ItensViewState extends State<ItensView> {
                         ),
                         Expanded(
                             child: Text(
-                          'Obs',
+                          'Edit',
                           textAlign: TextAlign.center,
                         ))
                       ],

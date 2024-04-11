@@ -14,6 +14,8 @@ class PrincipalView extends StatefulWidget {
 class _PrincipalViewState extends State<PrincipalView> {
   TextEditingController listaCompras = TextEditingController();
   var nomeListaFormKey = GlobalKey<FormState>();
+  List<ListaModel> selected = [];
+  List<int> indices = [];
 
   final r = Repositorio();
   List<ListaModel> lista = [];
@@ -37,7 +39,9 @@ class _PrincipalViewState extends State<PrincipalView> {
           itemCount: lista.length,
           itemBuilder: (BuildContext context, int index) {
             return Card(
-              color: const Color.fromARGB(255, 255, 252, 219),
+              color: selected.contains(lista[index])
+                  ? Colors.amber[400]
+                  : const Color.fromARGB(255, 255, 252, 219),
               shadowColor: Colors.amber,
               surfaceTintColor: Colors.white,
               child: Padding(
@@ -52,12 +56,15 @@ class _PrincipalViewState extends State<PrincipalView> {
                     );
                   },
                   onLongPress: () {
-                    listaCompras.text = lista[index].nomeLista;
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return novaLista(true);
-                        });
+                    setState(() {
+                      (selected.contains(lista[index]))
+                          ? selected.remove(lista[index])
+                          : selected.add(lista[index]);
+                      (indices.contains(index))
+                          ? indices.remove(index)
+                          : indices.add(index);
+                    });
+                    opcoes();
                   },
                   title: Text(lista[index].nomeLista),
                 ),
@@ -71,7 +78,7 @@ class _PrincipalViewState extends State<PrincipalView> {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return novaLista(false);
+                  return novaLista(false, 0);
                 });
           },
           label: const Text(
@@ -88,12 +95,12 @@ class _PrincipalViewState extends State<PrincipalView> {
     );
   }
 
-  AlertDialog novaLista(bool editar) {
+  AlertDialog novaLista(bool editar, int i) {
     return AlertDialog(
       elevation: 0,
       actionsAlignment: MainAxisAlignment.spaceBetween,
-      title: const Text(
-        'Nova Lista',
+      title: Text(
+        editar ? 'Editar Lista' : 'Nova Lista',
         textAlign: TextAlign.center,
       ),
       content: Form(
@@ -115,7 +122,10 @@ class _PrincipalViewState extends State<PrincipalView> {
               ListaModel a =
                   ListaModel(nomeLista: listaCompras.text, lista: []);
               if (editar) {
-                r.addlista(a);
+                r.editarlista(a, i);
+                indices = [];
+                selected = [];
+
               } else {
                 r.addlista(a);
               }
@@ -125,9 +135,91 @@ class _PrincipalViewState extends State<PrincipalView> {
               Navigator.pop(context);
             }
           },
-          child: const Text("Adicionar"),
+          child: Text(editar ? 'Confirmar' : "Adicionar"),
         ),
       ],
     );
+  }
+
+  void opcoes() {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              selected.length == 1
+                  ? ListTile(
+                      title: const Text('Editar Lista'),
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 50),
+                      trailing: const Icon(Icons.edit),
+                      iconColor: Colors.amber,
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext bc) {
+                              listaCompras.text = selected[0].nomeLista;
+                              return novaLista(true, indices[0]);
+                            });
+                      },
+                    )
+                  : const Divider(
+                      thickness: 0.1,
+                      color: Colors.amber,
+                    ),
+              ListTile(
+                title: const Text('Deletar'),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 50),
+                trailing: const Icon(
+                  Icons.delete_forever,
+                ),
+                iconColor: Colors.orange,
+                onTap: () {
+                  Navigator.of(context).pop();
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext bc) {
+                        return AlertDialog(
+                          elevation: 0,
+                          title: const Text('Atenção',
+                              textAlign: TextAlign.center),
+                          actionsAlignment: MainAxisAlignment.spaceAround,
+                          content: Text(
+                            selected.length == 1
+                                ? 'Deseja deletar essa lista ?'
+                                : 'Deseja deletar essas listas ?',
+                            textAlign: TextAlign.justify,
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text(
+                                "Cancelar",
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                for (int a = 0; a < selected.length; a++) {
+                                  r.removelista(selected[a]);
+                                }
+                                selected = [];
+                                indices = [];
+                                setState(() {});
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Deletar"),
+                            ),
+                          ],
+                        );
+                      });
+                },
+              ),
+            ],
+          );
+        });
   }
 }

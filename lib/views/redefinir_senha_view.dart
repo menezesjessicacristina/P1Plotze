@@ -23,10 +23,10 @@ class _RedefinirSenhaViewState extends State<RedefinirSenhaView> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SingleChildScrollView(
-        child: Scaffold(
-          backgroundColor: const Color.fromARGB(255, 253, 238, 99),
-          body: Padding(
+      child: Scaffold(
+        backgroundColor: const Color.fromARGB(255, 253, 238, 99),
+        body: SingleChildScrollView(
+          child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
             child: Form(
               key: formKey,
@@ -44,7 +44,7 @@ class _RedefinirSenhaViewState extends State<RedefinirSenhaView> {
                     ),
                   ),
                 ),
-
+                
                 const SizedBox(height: 30),
                 Text(
                   'Problemas para entrar',
@@ -55,9 +55,9 @@ class _RedefinirSenhaViewState extends State<RedefinirSenhaView> {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 30),
-
+                
                 Funcoes().campodeformulario(txtemail, 'Email', 0),
-
+                
                 const SizedBox(height: 30),
                 //
                 // BOTÃO
@@ -82,13 +82,13 @@ class _RedefinirSenhaViewState extends State<RedefinirSenhaView> {
                   child: const Text('Enviar'),
                 ),
                 const SizedBox(height: 30),
-
+                
                 const Text(
                   '--------- OU ---------',
                   style: TextStyle(fontSize: 14),
                 ),
                 const SizedBox(height: 30),
-
+                
                 TextButton(
                   child: const Text('Criar outra conta',
                       style: TextStyle(fontSize: 18),
@@ -101,7 +101,7 @@ class _RedefinirSenhaViewState extends State<RedefinirSenhaView> {
                     );
                   },
                 ),
-
+                
                 const SizedBox(height: 80),
                 InkWell(
                   onTap: () {

@@ -14,7 +14,8 @@ class _SobreViewState extends State<SobreView> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Sobre'),
-          backgroundColor: const Color.fromARGB(255, 253, 238, 99),
+          centerTitle: true,
+          backgroundColor: Colors.white,
         ),
         body: SingleChildScrollView(
           child: Column(children: [
