@@ -9,7 +9,7 @@ class Repositorio {
     iniciarepositorio();
   }
 
-  iniciarepositorio() {
+  iniciarepositorio() async {
     if (_listas.isEmpty) {
       _listas = [
         ListaModel(nomeLista: 'Mercado', lista: [
@@ -41,10 +41,12 @@ class Repositorio {
     _listas[index].lista.remove(item);
   }
 
-  editaritem(ItemModel item, int index) async {
-    for (int i = 0; i < _listas[index].lista.length; i++) {
-      if (_listas[index].lista[i].id == item.id) {
-        _listas[index].lista[i] = item;
+  editarItem(ItemModel item) async {
+    for (int i = 0; i < _listas.length; i++) {
+      for (int j = 0; j < _listas[i].lista.length; j++) {
+        if (_listas[i].lista[j].id == item.id) {
+          _listas[i].lista[j] = item;
+        }
       }
     }
   }

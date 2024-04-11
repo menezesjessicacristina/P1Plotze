@@ -62,7 +62,13 @@ class _CadastroViewState extends State<CadastroView> {
                   shadowColor: const Color.fromARGB(255, 3, 17, 43),
                 ),
                 onPressed: () {
-                  if (formKey.currentState!.validate()) {}
+                  if (formKey.currentState!.validate()) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginView()),
+                    );
+                  }
                 },
                 child: const Text('Cadastrar'),
               ),

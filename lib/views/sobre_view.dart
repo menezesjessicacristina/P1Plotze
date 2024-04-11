@@ -17,7 +17,6 @@ class _SobreViewState extends State<SobreView> {
           backgroundColor: const Color.fromARGB(255, 253, 238, 99),
         ),
         body: Container(
-          color: Colors.black87,
           child: Column(children: [
             Padding(
               padding: EdgeInsets.symmetric(
@@ -34,16 +33,13 @@ class _SobreViewState extends State<SobreView> {
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
               child: Text(
                   'Lista de Compras: Este é um aplicativo simples e intuitivo para criar e gerenciar listas de compras. Você pode criar listas personalizadas para diferentes finalidades, como compras semanais, material escolar, lista de presentes e muito mais. \n\nO objetivo deste aplicativo é ajudar no seu dia a dia a otimizar o tempo e não deixar-lo esquecer nenhum item da sau lista. ',
-                  style: TextStyle(color: Colors.yellow[50]),
                   textAlign: TextAlign.justify),
             ),
-            
             Padding(
-              padding:
-                  const EdgeInsets.only(left: 80, top: 100),
-              child: Text('Por: Jéssica Cristina Menezes',
-                  style: TextStyle(color: Colors.yellow[50]),
-                  ),
+              padding: const EdgeInsets.only(left: 80, top: 100),
+              child: Text(
+                'Por: Jéssica Cristina Menezes',
+              ),
             )
           ]),
         ),

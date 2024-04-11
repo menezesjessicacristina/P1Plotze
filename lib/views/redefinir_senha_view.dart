@@ -70,7 +70,13 @@ class _RedefinirSenhaViewState extends State<RedefinirSenhaView> {
                   shadowColor: const Color.fromARGB(255, 3, 17, 43),
                 ),
                 onPressed: () {
-                  if (formKey.currentState!.validate()) {}
+                  if (formKey.currentState!.validate()) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginView()),
+                    );
+                  }
                 },
                 child: const Text('Enviar'),
               ),

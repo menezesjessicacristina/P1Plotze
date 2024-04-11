@@ -31,7 +31,6 @@ class _PrincipalViewState extends State<PrincipalView> {
         appBar: AppBar(
           centerTitle: true,
           title: const Text('Lista de Compras'),
-          automaticallyImplyLeading: false,
           backgroundColor: const Color.fromARGB(255, 253, 238, 99),
         ),
         body: ListView.builder(
