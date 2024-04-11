@@ -9,7 +9,7 @@ void main() {
   runApp(
     DevicePreview(
       enabled: true,
-      builder: (context) => MainApp(),
+      builder: (context) =>  MainApp(),
     ),
   );
 }
